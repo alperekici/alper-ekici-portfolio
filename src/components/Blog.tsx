@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 const content = {
@@ -120,10 +121,12 @@ export default function Blog() {
               >
                 {post.featuredImageUrl && (
                   <div className="relative h-48 bg-gray-700">
-                    <img
+                    <Image
                       src={post.featuredImageUrl}
                       alt={post.title[language]}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
                 )}

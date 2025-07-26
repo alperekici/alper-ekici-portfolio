@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 const content = {
@@ -121,10 +122,12 @@ export default function Projects() {
               >
                 <div className="relative h-48 bg-gray-700">
                   {project.imageUrl ? (
-                    <img
+                    <Image
                       src={project.imageUrl}
                       alt={project.title[language]}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   ) : (
                     <div className="absolute inset-0 bg-blue-600 opacity-20"></div>

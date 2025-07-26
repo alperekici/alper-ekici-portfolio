@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 import { FaQuoteLeft } from 'react-icons/fa'
+import Image from 'next/image'
 
 const content = {
   title: {
@@ -56,11 +57,13 @@ export default function Testimonials() {
                 {testimonial.text[language]}
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-                  <img
+                <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
+                  <Image
                     src={testimonial.image}
                     alt={testimonial.name}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="48px"
                   />
                 </div>
                 <div>

@@ -1,5 +1,6 @@
 import { client } from '@/sanity/lib/client'
 import { notFound } from 'next/navigation'
+import Image from 'next/image'
 import BlogPostContent from './BlogPostContent'
 
 interface PortableTextContent {
@@ -78,11 +79,13 @@ export default async function BlogPost({ params }: Props) {
     <article className="min-h-screen bg-gray-900 p-4">
       <div className="max-w-4xl mx-auto">
         {post.featuredImageUrl && (
-          <div className="mb-8">
-            <img
+          <div className="relative mb-8 h-64">
+            <Image
               src={post.featuredImageUrl}
               alt={post.title[language]}
-              className="w-full h-64 object-cover rounded-lg"
+              fill
+              className="object-cover rounded-lg"
+              sizes="(max-width: 768px) 100vw, 768px"
             />
           </div>
         )}
