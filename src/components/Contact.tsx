@@ -24,9 +24,9 @@ const content = {
 }
 
 const contactInfo = {
-  email: "m.alperekici@gmail.com", //
-  github: "https://github.com/alperekici", // GitHub profilinizi ekleyin
-  linkedin: "https://www.linkedin.com/in/mehmet-alper-ekici-746683220" // LinkedIn 
+  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "m.alperekici@gmail.com",
+  github: process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/alperekici",
+  linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/in/mehmet-alper-ekici-746683220"
 }
 
 export default function Contact() {

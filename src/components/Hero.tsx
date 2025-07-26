@@ -46,7 +46,7 @@ export default function Hero() {
         
         <div className="mt-8 space-x-4">
           <a
-            href="https://github.com/alperekici"
+            href={process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/alperekici"}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors"
