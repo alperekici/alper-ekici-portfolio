@@ -27,10 +27,11 @@ interface BlogPost {
   tags?: string[]
 }
 
-interface Props {
-  params: {
+type Props = {
+  params: Promise<{
     slug: string
-  }
+  }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateStaticParams() {
@@ -63,7 +64,8 @@ async function getBlogPost(slug: string): Promise<BlogPost | null> {
 }
 
 export default async function BlogPost({ params }: Props) {
-  const post = await getBlogPost(params.slug)
+  const { slug } = await params
+  const post = await getBlogPost(slug)
 
   if (!post) {
     notFound()
