@@ -24,9 +24,9 @@ const content = {
 }
 
 const contactInfo = {
-  email: "your.email@example.com", // E-posta adresinizi ekleyin
-  github: "https://github.com/yourusername", // GitHub profilinizi ekleyin
-  linkedin: "https://linkedin.com/in/yourusername" // LinkedIn profilinizi ekleyin
+  email: "m.alperekici@gmail.com", //
+  github: "https://github.com/alperekici", // GitHub profilinizi ekleyin
+  linkedin: "https://www.linkedin.com/in/mehmet-alper-ekici-746683220?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bach0BiteRCa556b%2B4ERj6Q%3D%3D" // LinkedIn 
 }
 
 export default function Contact() {
