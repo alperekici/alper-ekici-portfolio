@@ -2,13 +2,24 @@
 
 import { PortableText } from '@portabletext/react'
 
+interface CodeBlockValue {
+  code: string
+  language: string
+  filename?: string
+}
+
+interface PortableTextContent {
+  _type: string
+  [key: string]: unknown
+}
+
 interface BlogPostContentProps {
-  content: any[]
+  content: PortableTextContent[]
 }
 
 // Code block component for PortableText
-const CodeBlock = ({ value }: { value: any }) => {
-  const { code, language, filename } = value
+const CodeBlock = ({ value }: { value: CodeBlockValue }) => {
+  const { code, filename } = value
 
   return (
     <div className="my-6">

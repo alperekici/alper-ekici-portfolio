@@ -2,6 +2,11 @@ import { client } from '@/sanity/lib/client'
 import { notFound } from 'next/navigation'
 import BlogPostContent from './BlogPostContent'
 
+interface PortableTextContent {
+  _type: string
+  [key: string]: unknown
+}
+
 interface BlogPost {
   _id: string
   title: {
@@ -13,8 +18,8 @@ interface BlogPost {
     en: string
   }
   content: {
-    tr: any[]
-    en: any[]
+    tr: PortableTextContent[]
+    en: PortableTextContent[]
   }
   featuredImageUrl?: string
   slug: string
