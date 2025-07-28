@@ -1,6 +1,42 @@
 import { NextResponse } from 'next/server'
 import { client } from '@/sanity/lib/client'
 
+interface SanityBlogPost {
+  _id?: string
+  title?: {
+    tr?: string
+    en?: string
+  }
+  excerpt?: {
+    tr?: string
+    en?: string
+  }
+  featuredImageUrl?: string
+  slug?: string
+  publishedAt?: string
+  tags?: string[]
+  order?: number
+  featured?: boolean
+}
+
+interface CleanedBlogPost {
+  _id: string
+  title: {
+    tr: string
+    en: string
+  }
+  excerpt: {
+    tr: string
+    en: string
+  }
+  featuredImageUrl: string | null
+  slug: string
+  publishedAt: string
+  tags: string[]
+  order: number
+  featured: boolean
+}
+
 export async function GET() {
   try {
     const blogPosts = await client.fetch(`
@@ -18,7 +54,7 @@ export async function GET() {
     `)
 
     // Null check ve veri temizleme
-    const cleanedBlogPosts = blogPosts.map((post: any) => ({
+    const cleanedBlogPosts: CleanedBlogPost[] = blogPosts.map((post: SanityBlogPost) => ({
       _id: post._id || '',
       title: {
         tr: post.title?.tr || 'Untitled Post',

@@ -1,6 +1,42 @@
 import { NextResponse } from 'next/server'
 import { client } from '@/sanity/lib/client'
 
+interface SanityProject {
+  _id?: string
+  title?: {
+    tr?: string
+    en?: string
+  }
+  description?: {
+    tr?: string
+    en?: string
+  }
+  imageUrl?: string
+  technologies?: string[]
+  githubUrl?: string
+  liveUrl?: string
+  order?: number
+  featured?: boolean
+}
+
+interface CleanedProject {
+  _id: string
+  title: {
+    tr: string
+    en: string
+  }
+  description: {
+    tr: string
+    en: string
+  }
+  imageUrl: string | null
+  technologies: string[]
+  githubUrl: string | null
+  liveUrl: string | null
+  order: number
+  featured: boolean
+}
+
 export async function GET() {
   try {
     const projects = await client.fetch(`
@@ -18,7 +54,7 @@ export async function GET() {
     `)
 
     // Null check ve veri temizleme
-    const cleanedProjects = projects.map((project: any) => ({
+    const cleanedProjects: CleanedProject[] = projects.map((project: SanityProject) => ({
       _id: project._id || '',
       title: {
         tr: project.title?.tr || 'Untitled Project',
