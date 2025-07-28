@@ -123,7 +123,7 @@ export default function Blog() {
                   <div className="relative h-48 bg-gray-700">
                     <Image
                       src={post.featuredImageUrl}
-                      alt={post.title[language]}
+                      alt={post.title?.[language] || 'Blog Post'}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -133,17 +133,17 @@ export default function Blog() {
                 
                 <div className="p-6">
                   <h3 className="text-2xl font-semibold mb-2 text-gray-200">
-                    {post.title[language]}
+                    {post.title?.[language] || 'Untitled Post'}
                   </h3>
                   <p className="text-gray-400 mb-4">
-                    {post.excerpt[language]}
+                    {post.excerpt?.[language] || 'No excerpt available'}
                   </p>
                   
                   {post.tags && post.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {post.tags.map((tag) => (
+                      {post.tags.map((tag, tagIndex) => (
                         <span
-                          key={tag}
+                          key={`${tag}-${tagIndex}`}
                           className="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300"
                         >
                           {tag}

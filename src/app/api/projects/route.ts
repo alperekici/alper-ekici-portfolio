@@ -17,7 +17,26 @@ export async function GET() {
       }
     `)
 
-    return NextResponse.json(projects)
+    // Null check ve veri temizleme
+    const cleanedProjects = projects.map((project: any) => ({
+      _id: project._id || '',
+      title: {
+        tr: project.title?.tr || 'Untitled Project',
+        en: project.title?.en || 'Untitled Project'
+      },
+      description: {
+        tr: project.description?.tr || 'No description available',
+        en: project.description?.en || 'No description available'
+      },
+      imageUrl: project.imageUrl || null,
+      technologies: project.technologies || [],
+      githubUrl: project.githubUrl || null,
+      liveUrl: project.liveUrl || null,
+      order: project.order || 1,
+      featured: project.featured || false
+    }))
+
+    return NextResponse.json(cleanedProjects)
   } catch (error) {
     console.error('Error fetching projects:', error)
     return NextResponse.json(

@@ -26,6 +26,10 @@ const content = {
   error: {
     tr: "Projeler yüklenirken hata oluştu",
     en: "Error loading projects"
+  },
+  noDescription: {
+    tr: "Açıklama bulunmuyor",
+    en: "No description available"
   }
 }
 
@@ -124,7 +128,7 @@ export default function Projects() {
                   {project.imageUrl ? (
                     <Image
                       src={project.imageUrl}
-                      alt={project.title[language]}
+                      alt={project.title?.[language] || 'Project'}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -136,16 +140,16 @@ export default function Projects() {
                 
                 <div className="p-6">
                   <h3 className="text-2xl font-semibold mb-2 text-gray-200">
-                    {project.title[language]}
+                    {project.title?.[language] || 'Untitled Project'}
                   </h3>
                   <p className="text-gray-400 mb-4">
-                    {project.description[language]}
+                    {project.description?.[language] || content.noDescription[language]}
                   </p>
                   
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
+                    {project.technologies?.map((tech, techIndex) => (
                       <span
-                        key={tech}
+                        key={`${tech}-${techIndex}`}
                         className="px-3 py-1 bg-gray-700 rounded-full text-sm text-gray-300"
                       >
                         {tech}

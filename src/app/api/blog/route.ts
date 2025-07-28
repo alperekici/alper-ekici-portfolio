@@ -17,7 +17,26 @@ export async function GET() {
       }
     `)
 
-    return NextResponse.json(blogPosts)
+    // Null check ve veri temizleme
+    const cleanedBlogPosts = blogPosts.map((post: any) => ({
+      _id: post._id || '',
+      title: {
+        tr: post.title?.tr || 'Untitled Post',
+        en: post.title?.en || 'Untitled Post'
+      },
+      excerpt: {
+        tr: post.excerpt?.tr || 'No excerpt available',
+        en: post.excerpt?.en || 'No excerpt available'
+      },
+      featuredImageUrl: post.featuredImageUrl || null,
+      slug: post.slug || '',
+      publishedAt: post.publishedAt || new Date().toISOString(),
+      tags: post.tags || [],
+      order: post.order || 1,
+      featured: post.featured || false
+    }))
+
+    return NextResponse.json(cleanedBlogPosts)
   } catch (error) {
     console.error('Error fetching blog posts:', error)
     return NextResponse.json(
